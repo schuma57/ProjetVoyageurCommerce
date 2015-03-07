@@ -85,6 +85,9 @@ int main()
 
 	//----------------------------------------------------
 
+	//------------Cout------------------------------------Yacine
+	cout <<"Cout du cycle : "<< Cycle<InfoAreteCarte, InfoSommetCarte>::cout(cycle) << endl;
+	//----------------------------------------------------YacineFin
 
 	//--------------- on dessine via le serveur ------------------------------
 	//g1.accept(&visitor);
