@@ -57,7 +57,7 @@ int main()
 	cout << "g1 = " << endl << g1 << endl;
 
 	//----------------- on crée le fichier texte pour dessiner g1 ------------------------------
-	/*cout << "entrez le nom du fichier de sauvegarde (sans extension) : ";
+	cout << "entrez le nom du fichier de sauvegarde (sans extension) : ";
 	cin >> filename;
 
 	string nomFichierDessin = "" +filename +".txt";
@@ -71,7 +71,6 @@ int main()
 	DessinGrapheRecuitSimule::ecritGraphe(f, g1, coinBG, coinHD, couleurRepere, rayonSommet, couleurSommets, couleurAretes);
 
 	cout << "le fichier texte de  dessin " << nomFichierDessin << " a ete cree" << endl;
-	*/
 
 
 	//------------------- creer cycle hamilton -------------------------------

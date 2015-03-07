@@ -1,6 +1,6 @@
 titre = carte routière
 legende = carte routière simplifiée représentée par un graphe
-resume = carte routière
+resume = Circuit du Voyageur de commerce
 type de scene = courbes
 coin bas gauche de la figure sur l'écran en coordonnées monde = ( -1, -1)
 coin haut droit de la figure sur l'écran en coordonnées monde = ( 5, 5)
@@ -8,7 +8,7 @@ nombre de points remarquables = 10
 point remarquable = 2 black (0,0) O
 point remarquable = 2 black (1,0) 1
 point remarquable = 2 black (0,1) 1
-point remarquable = 5 red ( 2, 3) s6( 2, 3)
+point remarquable = 5 red ( 2, 4) s6( 2, 4)
 point remarquable = 5 red ( 1, 4) s5( 1, 4)
 point remarquable = 5 red ( 3, 5) s4( 3, 5)
 point remarquable = 5 red ( 5, 4) s3( 5, 4)
@@ -19,11 +19,11 @@ nombre de courbes = 21
 couleur =  blue
 nombre de points = 2
 ( 1, 4)
-( 2, 3)
+( 2, 4)
 couleur =  blue
 nombre de points = 2
 ( 3, 5)
-( 2, 3)
+( 2, 4)
 couleur =  blue
 nombre de points = 2
 ( 3, 5)
@@ -31,7 +31,7 @@ nombre de points = 2
 couleur =  blue
 nombre de points = 2
 ( 5, 4)
-( 2, 3)
+( 2, 4)
 couleur =  blue
 nombre de points = 2
 ( 5, 4)
@@ -43,7 +43,7 @@ nombre de points = 2
 couleur =  blue
 nombre de points = 2
 ( 5, 2)
-( 2, 3)
+( 2, 4)
 couleur =  blue
 nombre de points = 2
 ( 5, 2)
@@ -59,7 +59,7 @@ nombre de points = 2
 couleur =  blue
 nombre de points = 2
 ( 3, 1)
-( 2, 3)
+( 2, 4)
 couleur =  blue
 nombre de points = 2
 ( 3, 1)
@@ -79,7 +79,7 @@ nombre de points = 2
 couleur =  blue
 nombre de points = 2
 ( 1, 2)
-( 2, 3)
+( 2, 4)
 couleur =  blue
 nombre de points = 2
 ( 1, 2)

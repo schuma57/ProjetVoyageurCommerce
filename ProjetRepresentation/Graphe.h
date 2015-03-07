@@ -113,10 +113,7 @@ Graphe<S, T>::Graphe() :prochaineClef(0), lAretes(NULL), lSommets(NULL){}
 template <class S, class T>
 Graphe<S, T>::Graphe(const Graphe<S, T> & graphe)
 {
-	//throw Erreur("pas encore écrit : reste à faire");
 	this->prochaineClef = graphe.prochaineClef;
-	//memcpy(&lAretes, &graphe.lAretes, sizeof(graphe.lAretes));
-	//memcpy(&lSommets, &graphe.lSommets, sizeof(graphe.lSommets));
 
 	this->lAretes = new PElement<Arete<S,T>>( *graphe.lAretes);
 	this->lSommets = new PElement<Sommet<T>>( *graphe.lSommets);
