@@ -15,6 +15,7 @@ public:
 	~Cycle(){}
 
 	static vector<Arete<S, T>> getHamiltonCycle(const Graphe<S, T> & graphe);
+	static double cout(const vector<Arete<S, T>> & cyclePrecedent);
 };
 
 
@@ -71,4 +72,15 @@ template<class S, class T>
 	//cout << gr << endl;
 
 	return cycle;
+}
+
+template<class S, class T>
+double Cycle<S, T>::cout(const vector<Arete<S, T>> & cyclePrecedent)
+{
+	double somme(0);
+	for (auto t : cyclePrecedent)
+	{
+		somme = somme + t.v.cout;
+	}
+	return somme;
 }
