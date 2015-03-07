@@ -52,20 +52,9 @@ int main()
 		}
 	//--------------- ca y est, g1 est créé et complet ----------------------------------
 
+
 	// ----------------- on affiche sur la console toutes les informations contenues dans g1
 	cout << "g1 = " << endl << g1 << endl;
-
-	//------------------- creer cycle hamilton -------------------------------
-	vector< Arete<InfoAreteCarte, InfoSommetCarte> > cycle = Cycle<InfoAreteCarte, InfoSommetCarte>::getHamiltonCycle(g1);
-
-	cout << "------------- voici le cycle --------------" << endl;
-	for (auto t : cycle)
-	{
-		cout << t << endl;
-	}
-
-	//----------------------------------------------------
-
 
 	//----------------- on crée le fichier texte pour dessiner g1 ------------------------------
 	/*cout << "entrez le nom du fichier de sauvegarde (sans extension) : ";
@@ -83,6 +72,19 @@ int main()
 
 	cout << "le fichier texte de  dessin " << nomFichierDessin << " a ete cree" << endl;
 	*/
+
+
+	//------------------- creer cycle hamilton -------------------------------
+	vector< Arete<InfoAreteCarte, InfoSommetCarte> > cycle = Cycle<InfoAreteCarte, InfoSommetCarte>::getHamiltonCycle(g1);
+
+	cout << "------------- voici le cycle --------------" << endl;
+	for (auto t : cycle)
+	{
+		cout << t << endl;
+	}
+
+	//----------------------------------------------------
+
 
 	//--------------- on dessine via le serveur ------------------------------
 	//g1.accept(&visitor);

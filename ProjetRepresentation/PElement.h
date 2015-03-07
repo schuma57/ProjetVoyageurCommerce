@@ -16,6 +16,11 @@ public:
 	///
 	PElement(T * v, PElement<T> * s);
 
+	///
+	/// \brief Constructeur par copie
+	///
+	PElement(const PElement<T> & p);
+
 
 	static const string toString(const PElement<T> * p,
 		const char * debut = "( ",
@@ -86,6 +91,17 @@ ostream& operator <<(ostream & os, const PElement<T> * p)
 ///
 template <class T>
 PElement<T>::PElement(T * v, PElement<T> * s) :v(v), s(s){}
+
+///
+/// Constructeur par copie
+///
+template <class T>
+PElement<T>::PElement(const PElement<T> & p)
+{
+	this->v = new T(*p.v);
+	if (p.s)
+		this->s = new PElement<T>(*p.s);
+}
 
 
 template <class T>

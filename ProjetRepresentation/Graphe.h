@@ -115,8 +115,11 @@ Graphe<S, T>::Graphe(const Graphe<S, T> & graphe)
 {
 	//throw Erreur("pas encore écrit : reste à faire");
 	this->prochaineClef = graphe.prochaineClef;
-	memcpy(&lAretes, &graphe.lAretes, sizeof(graphe.lAretes));
-	memcpy(&lSommets, &graphe.lSommets, sizeof(graphe.lSommets));
+	//memcpy(&lAretes, &graphe.lAretes, sizeof(graphe.lAretes));
+	//memcpy(&lSommets, &graphe.lSommets, sizeof(graphe.lSommets));
+
+	this->lAretes = new PElement<Arete<S,T>>( *graphe.lAretes);
+	this->lSommets = new PElement<Sommet<T>>( *graphe.lSommets);
 }
 
 template <class S, class T>
@@ -128,8 +131,8 @@ const Graphe<S, T> & Graphe<S, T>::operator = (const Graphe<S, T> & graphe)
 template <class S, class T>
 Graphe<S, T>::~Graphe()
 {
-	//PElement< Arete<S, T>>::efface2(this->lAretes);
-	//PElement<Sommet<T> >::efface2(this->lSommets);
+	PElement< Arete<S, T>>::efface2(this->lAretes);
+	PElement<Sommet<T> >::efface2(this->lSommets);
 }
 
 /**

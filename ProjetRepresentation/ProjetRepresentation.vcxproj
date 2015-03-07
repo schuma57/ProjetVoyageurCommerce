@@ -79,7 +79,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConnexionTCP.cpp" />
-    <ClCompile Include="Cycle.cpp" />
     <ClCompile Include="DessinGraphe.cpp" />
     <ClCompile Include="DessinGrapheRecuitSimule.cpp" />
     <ClCompile Include="Erreur.cpp" />

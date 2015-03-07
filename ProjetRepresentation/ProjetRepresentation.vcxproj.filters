@@ -39,9 +39,6 @@
     <ClCompile Include="Vecteur2D.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Cycle.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="VisitorBSplines.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>

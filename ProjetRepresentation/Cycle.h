@@ -23,31 +23,32 @@ template<class S, class T>
 {
 	Graphe<S, T> gr( graphe);
 	vector<Arete<S, T>> cycle;
+	const int NB = gr.nombreSommets();
 
-	Arete<S, T> premier = *(gr.lAretes->v);		//premiere arete
-	cycle.push_back(premier);
-	PElement<Sommet<T>>::retire(premier.debut, gr.lSommets);	//on supprime le sommet
-	PElement<Arete<S,T>>::retire(&premier, gr.lAretes);		//on supprime l'arete
+	Arete<S, T>* premier = PElement<Arete<S,T>>::depiler(gr.lAretes);		//premiere arete
+	cycle.push_back(*premier);
+	PElement<Sommet<T>>::retire(premier->debut, gr.lSommets);	//on supprime le sommet
 
-	PElement<pair<Sommet<T>*, Arete<S, T>*>>* truc = gr.adjacences(premier.debut);
+	PElement<pair<Sommet<T>*, Arete<S, T>*>>* truc = gr.adjacences(premier->debut);
 	while (truc != NULL)
 	{
-		PElement<Arete<S, T>>::retire(truc->v->second, gr.lAretes);
+		PElement<Arete<S, T>>::retire(truc->v->second, gr.lAretes); //on supprime toutes les aretes partant du sommet supprime
 		truc = truc->s;
 	}
 
-	Sommet<T>* temp = NULL;
+	Sommet<T>* sommetCourant = NULL;
 	Arete<S, T>* nextArete = NULL;
+	Arete<S, T>* dernier = NULL;
 
-	while (gr.nombreSommets() > 1)
+	for (int i = 2; i < NB; i++)
 	{
 		Arete<S, T>* derArete = &cycle.at(cycle.size() - 1);	//on recupere la derniere arete stockee
 
-		temp = derArete->fin;		//sommet courant
+		sommetCourant = derArete->fin;		//sommet courant
 
-		nextArete = gr.adjacences(temp)->v->second;		//on recupere l'arete adjacente
+		nextArete = gr.adjacences(sommetCourant)->v->second;		//on recupere l'arete adjacente
 
-		if (temp == nextArete->fin)
+		if (sommetCourant == nextArete->fin)
 			nextArete = new Arete<S, T>(nextArete->clef, nextArete->fin, nextArete->debut, nextArete->v); //on retourne l'arete
 
 		cycle.push_back(*nextArete);	//on ajoute l'arete
@@ -56,12 +57,18 @@ template<class S, class T>
 		PElement<pair<Sommet<T>*, Arete<S, T>*>>* truc = gr.adjacences(nextArete->debut);
 		while (truc != NULL)
 		{
-			PElement<Arete<S, T>>::retire(truc->v->second, gr.lAretes);
+			PElement<Arete<S, T>>::retire(truc->v->second, gr.lAretes); //on supprimes toutes les aretes partant du sommet supprime
 			truc = truc->s;
 		}
 	}
-	PElement<Arete<S, T>>::efface2(gr.lAretes);
-	PElement<Sommet<T> >::efface2(gr.lSommets);
+
+	if ((dernier = graphe.getAreteParSommets(cycle.at(cycle.size() - 1).fin, cycle.at(0).debut)) != NULL)
+		cycle.push_back(*dernier);
+		
+	sommetCourant = 0; nextArete = 0; dernier = 0;
+
+	//cout << "-------- affichage du copie graphe -------------" << endl;
+	//cout << gr << endl;
 
 	return cycle;
 }
