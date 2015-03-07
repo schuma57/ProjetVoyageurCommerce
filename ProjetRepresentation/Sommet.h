@@ -27,7 +27,7 @@ Sommet<T>::operator string () const
 
 	oss << "Sommet(" << endl;
 	oss << GElement::operator string() << endl;
-	oss << "degré = " << degre << endl;
+	oss << "degre = " << degre << endl;
 	oss << "v = " << v << endl;
 	oss << ")";
 	return oss.str();

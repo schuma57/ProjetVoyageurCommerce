@@ -46,7 +46,7 @@ const string & couleurAretes)
 {
 	string resume;
 
-	resume = "carte routière";
+	resume = "Circuit du Voyageur de commerce";
 
 	DessinGraphe::ecrireEntete(of, "carte routière", "carte routière simplifiée représentée par un graphe", resume, coinBG, coinHD);
 

@@ -7,13 +7,13 @@
 #include <string>
 #include <sstream>
 #include <list>
+#include "Erreur.h"
 #include "PElement.h"
 #include "Arete.h"
 #include "Sommet.h"
 using namespace std;
 
 class Visitor;
-
 
 //!
 //! \class Graphe
@@ -113,7 +113,10 @@ Graphe<S, T>::Graphe() :prochaineClef(0), lAretes(NULL), lSommets(NULL){}
 template <class S, class T>
 Graphe<S, T>::Graphe(const Graphe<S, T> & graphe)
 {
-	throw Erreur("pas encore écrit : reste à faire");
+	//throw Erreur("pas encore écrit : reste à faire");
+	this->prochaineClef = graphe.prochaineClef;
+	memcpy(&lAretes, &graphe.lAretes, sizeof(graphe.lAretes));
+	memcpy(&lSommets, &graphe.lSommets, sizeof(graphe.lSommets));
 }
 
 template <class S, class T>
@@ -125,8 +128,8 @@ const Graphe<S, T> & Graphe<S, T>::operator = (const Graphe<S, T> & graphe)
 template <class S, class T>
 Graphe<S, T>::~Graphe()
 {
-	PElement< Arete<S, T>>::efface2(this->lAretes);
-	PElement<Sommet<T> >::efface2(this->lSommets);
+	//PElement< Arete<S, T>>::efface2(this->lAretes);
+	//PElement<Sommet<T> >::efface2(this->lSommets);
 }
 
 /**
@@ -237,7 +240,7 @@ Graphe<S, T>::operator string() const
 
 	oss << PElement<Sommet<T> >::toString(lSommets, "", "\n", "");
 
-	oss << "nombre d'arêtes = " << this->nombreAretes() << "\n";
+	oss << "nombre d'aretes = " << this->nombreAretes() << "\n";
 
 	oss << PElement<Arete<S, T> >::toString(lAretes, "", "\n", "");
 	oss << ")";

@@ -27,7 +27,7 @@ public:
 	//!
 	//! \brief override
 	//!
-	virtual void visiteGraphe() const = 0;
+	virtual void visiteGraphe() const;
 };
 
 #endif

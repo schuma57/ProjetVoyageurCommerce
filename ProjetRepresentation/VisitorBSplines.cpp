@@ -16,7 +16,7 @@ VisitorBSplines::~VisitorBSplines()
 }
 
 
-void visiteGraphe()
+void VisitorBSplines::visiteGraphe() const
 {
 
 	//ConnexionTCP::getConnexionTCP();

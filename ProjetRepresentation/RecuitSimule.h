@@ -57,9 +57,11 @@ const S recuitSimule1(const double & tInitiale, const double & tFinale, const in
 
 		for (nombreTentatives = nombreSucces = 0; nombreTentatives < nombreTentativesMax && nombreSucces < nombreSuccesMax; ++nombreTentatives)
 		{
-
-			solutionPrecedente = solutionCourante; coutPrecedent = coutCourant;
-			solutionCourante = changementAleatoire(solutionCourante); coutCourant = cout1(solutionCourante);
+			solutionPrecedente = solutionCourante;
+			coutPrecedent = coutCourant;
+			solutionCourante = changementAleatoire(solutionCourante);
+			coutCourant = cout1(solutionCourante);
+			
 			//cout<< "solution courante = " << solutionCourante<<", cout = " << coutCourant << endl;
 			if (coutCourant < coutPrecedent)  // la solution courante est meilleure que la solution précédente
 			{
