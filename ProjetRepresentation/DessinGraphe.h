@@ -8,6 +8,9 @@
 using namespace std;
 
 
+//!
+//! \class DessinGraphe
+//!
 class DessinGraphe
 {
 public:

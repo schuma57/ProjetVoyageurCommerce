@@ -2,10 +2,17 @@
 #define GELEMENT
 #pragma once
 
+//!
+//! \file GElement.h
+//!
+
 #include <iostream>
 #include <string>
 using namespace std;
 
+//!
+//! \class GElement
+//!
 class GElement
 {
 public:

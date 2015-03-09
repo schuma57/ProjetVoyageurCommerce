@@ -1,12 +1,19 @@
 #ifndef VECTEUR2D_H
 #define VECTEUR2D_H
 
+//!
+//! \file Vecteur2D.h
+//!
+
 #include <iostream>
 #include <string>
 #include <cmath>
 #include <algorithm>
 using namespace std;
 
+//!
+//! \class Vecteur2D
+//!
 class Vecteur2D
 {
 public:

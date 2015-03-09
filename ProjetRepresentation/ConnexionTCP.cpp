@@ -1,8 +1,8 @@
 //!
 //! \file ConnexionTCP.cpp
 //!
+#include "ConnexionTCP.h"
 
-/*#include "ConnexionTCP.h"
 
 //--------------------- static --------------------------------
 ConnexionTCP* ConnexionTCP::instanceUnique = NULL;
@@ -11,7 +11,7 @@ SOCKET ConnexionTCP::sock;
 ConnexionTCP* ConnexionTCP::getConnexionTCP()
 {
 	if (instanceUnique == NULL)
-		instanceUnique = new ConnexionTCP;
+		instanceUnique = new ConnexionTCP();
 	return instanceUnique;
 }
 //---------------------- fin static ------------------------------
@@ -29,7 +29,7 @@ ConnexionTCP::ConnexionTCP()
 	if (sock == INVALID_SOCKET)
 	{
 		ostringstream oss;
-		oss << "la création du socket a echoue : code d'erreur = " << WSAGetLastError() << endl; // pour les valeurs renvoyées par WSAGetLastError()
+		oss << "la création du socket a echoue : code d'erreur = " << WSAGetLastError() << endl;
 		throw Erreur(oss.str().c_str());
 	}
 	cout << "socket cree" << endl;
@@ -46,6 +46,7 @@ ConnexionTCP::ConnexionTCP()
 		throw Erreur("La connexion a échoué");
 	cout << "Connexion au serveur de dessin reussie" << endl;
 }
+
 
 ConnexionTCP::~ConnexionTCP()
 {
@@ -64,4 +65,3 @@ void ConnexionTCP::dessinerGraphe()
 {
 	//ConnexionTCP::getConnexionTCP();
 }
-*/

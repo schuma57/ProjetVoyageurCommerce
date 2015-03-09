@@ -1,3 +1,6 @@
+//!
+//! \file InfoAreteCarte.cpp
+//!
 #include <sstream>
 #include "InfoAreteCarte.h"
 

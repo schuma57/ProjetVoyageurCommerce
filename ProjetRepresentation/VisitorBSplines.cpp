@@ -1,7 +1,6 @@
 //!
 //! \file VisitorBSplines.cpp
 //!
-
 #include "VisitorBSplines.h"
 #include "ConnexionTCP.h"
 
@@ -18,6 +17,5 @@ VisitorBSplines::~VisitorBSplines()
 
 void VisitorBSplines::visiteGraphe() const
 {
-
-	//ConnexionTCP::getConnexionTCP();
+	ConnexionTCP::getConnexionTCP();
 }

@@ -9,7 +9,7 @@
 #include "Visitor.h"
 
 //!
-//! \class VisitorTCP
+//! \class VisitorBSplines
 //! \brief herite de la classe Visitor
 //!
 class VisitorBSplines : public Visitor

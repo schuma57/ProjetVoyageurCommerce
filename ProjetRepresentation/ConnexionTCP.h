@@ -1,14 +1,14 @@
 #ifndef CONNEXIONTCP
 #define CONNEXIONTCP
 #pragma once
-/*
+
 //!
 //! \file ConnexionTCP.h
 //!
-
+#pragma comment(lib,"Ws2_32.lib")
 #include <iostream>
 #include <sstream>
-#include <WinSock2.h>
+#include <winsock2.h>
 #include "Erreur.h"
 using namespace std;
 
@@ -34,6 +34,7 @@ private:
 	//! \brief instance unique de la classe
 	//!
 	static ConnexionTCP* instanceUnique;
+
 public:
 	//!
 	//! \brief Destructeur
@@ -49,5 +50,5 @@ public:
 	//!
 	void dessinerGraphe();
 };
-*/
+
 #endif

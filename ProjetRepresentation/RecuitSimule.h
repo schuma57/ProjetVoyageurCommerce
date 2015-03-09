@@ -1,5 +1,9 @@
 #pragma once
 
+//!
+//! \file RecuitSimule.h
+//!
+
 #include <float.h>
 #include <math.h>
 #include <stdlib.h>
@@ -93,6 +97,8 @@ const S recuitSimule1(const double & tInitiale, const double & tFinale, const in
 	return bestSolution;
 }
 
+
+//---------------------------------------- deuxieme facon de faire ----------------------------------------------------
 template <class S>
 class SolutionCout
 {

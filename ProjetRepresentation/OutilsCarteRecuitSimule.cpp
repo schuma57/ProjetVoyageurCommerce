@@ -1,3 +1,6 @@
+//!
+//! \file OutilsCarteRecuitSimule.cpp
+//!
 #include "AlgebreLineaire.h"
 #include "Vecteur2D.h"
 #include "OutilsCarteRecuitSimule.h"

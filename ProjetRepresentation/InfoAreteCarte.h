@@ -1,9 +1,15 @@
 #pragma once
 
+//!
+//! \file InfoAreteCarte.h
+//!
+
 #include <string>
 using namespace std;
 
-
+//!
+//! \class InfoAreteCarte
+//!
 class InfoAreteCarte
 {
 public:

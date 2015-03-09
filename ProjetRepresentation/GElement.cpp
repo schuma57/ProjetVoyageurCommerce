@@ -1,3 +1,6 @@
+//!
+//! \file GElement.cpp
+//!
 #include <sstream>
 #include "GElement.h"
 

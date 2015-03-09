@@ -1,9 +1,16 @@
 #pragma once
 
+//!
+//! \file InfoSommetCarte.h
+//!
+
 #include <string>
 #include "Vecteur2D.h"
 using namespace std;
 
+//!
+//! \class InfoSommetCarte
+//!
 class InfoSommetCarte
 {
 public:

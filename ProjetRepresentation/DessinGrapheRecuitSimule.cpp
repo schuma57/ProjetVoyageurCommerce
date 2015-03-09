@@ -1,3 +1,6 @@
+//!
+//! \file DessinGrapheRecuitSimule.cpp
+//!
 #include "DessinGraphe.h"
 #include "PElement.h"
 #include "DessinGrapheRecuitSimule.h"

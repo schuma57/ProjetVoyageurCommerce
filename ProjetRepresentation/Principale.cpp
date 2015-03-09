@@ -1,6 +1,11 @@
+//!
+//! \file Principale.cpp
+//!
+
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <time.h>
 #include "Graphe.h"
 #include "Arete.h"
 #include "Sommet.h"
@@ -11,15 +16,45 @@
 #include "DessinGrapheRecuitSimule.h"
 #include "OutilsCarteRecuitSimule.h"
 #include "VisitorBSplines.h"
+#include "RecuitSimule.h"
 using namespace std;
 
 #define S1 7				// nombre de sommets du graphe g1
 #define A1 (S1*(S1-1)/2)	// nombre d'arêtes du graphe g1 car g1
 
 
-int main()
+double cout1(const PElement<Arete<InfoAreteCarte, InfoSommetCarte>> * cyclePrecedent)
+{
+	if (!cyclePrecedent)
+		return 0;
+	else
+		return cyclePrecedent->v->v.cout + cout1(cyclePrecedent->s);
+}
+
+
+void creerFichier(Graphe<InfoAreteCarte, InfoSommetCarte> & graphe)
 {
 	string filename = "";
+
+	cout << "entrez le nom du fichier de sauvegarde (sans extension) : ";
+	cin >> filename;
+
+	string nomFichierDessin = "" + filename + ".txt";
+	ofstream f("sauvegarde/" + nomFichierDessin);				// ouverture de f en écriture, en mode texte (cf. doc cplusplus.com)
+	Vecteur2D coinBG(-1, -1), coinHD(5, 5);					// limites de la fenêtre à visualiser. calculées à partir des coordonnées des sommets
+	string couleurRepere = "blue";
+	int rayonSommet = 5;									// unité :  pixel
+	string couleurSommets = "red";
+	string couleurAretes = "blue";
+
+	DessinGrapheRecuitSimule::ecritGraphe(f, graphe, coinBG, coinHD, couleurRepere, rayonSommet, couleurSommets, couleurAretes);
+
+	cout << "le fichier texte de  dessin " << nomFichierDessin << " a ete cree" << endl;
+}
+
+int main()
+{
+	srand(time(NULL));
 	VisitorBSplines visitor;
 	
 	cout << "construction d'un graphe complet a 6 sommets" << endl;
@@ -57,36 +92,32 @@ int main()
 	cout << "g1 = " << endl << g1 << endl;
 
 	//----------------- on crée le fichier texte pour dessiner g1 ------------------------------
-	cout << "entrez le nom du fichier de sauvegarde (sans extension) : ";
-	cin >> filename;
-
-	string nomFichierDessin = "" +filename +".txt";
-	ofstream f("sauvegarde/"+nomFichierDessin);							// ouverture de f en écriture, en mode texte (cf. doc cplusplus.com)
-	Vecteur2D coinBG(-1, -1), coinHD(5, 5);					// limites de la fenêtre à visualiser. calculées à partir des coordonnées des sommets
-	string couleurRepere = "blue";
-	int rayonSommet = 5;									// unité :  pixel
-	string couleurSommets = "red";
-	string couleurAretes = "blue";
-
-	DessinGrapheRecuitSimule::ecritGraphe(f, g1, coinBG, coinHD, couleurRepere, rayonSommet, couleurSommets, couleurAretes);
-
-	cout << "le fichier texte de  dessin " << nomFichierDessin << " a ete cree" << endl;
-
+	//creerFichier(g1);
 
 	//------------------- creer cycle hamilton -------------------------------
-	vector< Arete<InfoAreteCarte, InfoSommetCarte> > cycle = Cycle<InfoAreteCarte, InfoSommetCarte>::getHamiltonCycle(g1);
+	Graphe<InfoAreteCarte, InfoSommetCarte> cycleHamilton (Cycle<InfoAreteCarte, InfoSommetCarte>::getHamiltonCycle(g1) );
 
 	cout << "------------- voici le cycle --------------" << endl;
-	for (auto t : cycle)
-	{
-		cout << t << endl;
-	}
+	cout << cycleHamilton << endl;
+	//creerFichier(cycleHamilton);
+	//----------------------------------------------------------------
 
-	//----------------------------------------------------
+	//------------------ Cout du cycle initial -----------------------
+	cout <<"Cout du cycle initial : "<< cout1(cycleHamilton.lAretes) << endl;
+	//------------------------------------------------------------
 
-	//------------Cout------------------------------------Yacine
-	cout <<"Cout du cycle : "<< Cycle<InfoAreteCarte, InfoSommetCarte>::cout(cycle) << endl;
-	//----------------------------------------------------YacineFin
+
+	double coutMeilleureSolution;
+
+	//--------- on utilise le recuit simule ---------------------------
+	/*Graphe<InfoAreteCarte, InfoSommetCarte> solution = recuitSimule(
+		10, 20, 40, 20,
+		const Graphe<InfoAreteCarte, InfoSommetCarte> & solutionInitiale,
+		double(*cout1)(const Graphe<InfoAreteCarte, InfoSommetCarte> & solution),
+		const Graphe<InfoAreteCarte, InfoSommetCarte>(*changementAleatoire)(const Graphe<InfoAreteCarte, InfoSommetCarte> & solution),
+		double(*succ)(const double & temperature), double & coutBestSolution
+		);*/
+	//-----------------------------------------------------------------
 
 	//--------------- on dessine via le serveur ------------------------------
 	//g1.accept(&visitor);

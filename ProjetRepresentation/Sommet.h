@@ -1,5 +1,9 @@
 #pragma once
 
+//!
+//! \file Sommet.h
+//!
+
 #include <string>
 #include "GElement.h"
 using namespace std;
@@ -9,6 +13,9 @@ Sommet d'un graphe en général
 v est l'information associée au sommet : elle dépend de l'application du graphe
 */
 
+//!
+//! \class Sommet
+//!
 template <class T>
 class Sommet : public GElement
 {

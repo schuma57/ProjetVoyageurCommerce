@@ -1,3 +1,6 @@
+//!
+//! \file Vecteur2D.cpp
+//!
 #include <sstream>
 #include "Vecteur2D.h"
 

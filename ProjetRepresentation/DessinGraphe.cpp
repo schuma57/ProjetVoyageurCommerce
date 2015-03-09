@@ -1,3 +1,6 @@
+//!
+//! \file DessinGraphe.cpp
+//!
 #include "DessinGraphe.h"
 
 

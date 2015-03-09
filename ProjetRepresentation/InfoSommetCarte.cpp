@@ -1,3 +1,6 @@
+//!
+//! \file InfoSommetCarte.cpp
+//!
 #include <sstream>
 #include "InfoSommetCarte.h"
 

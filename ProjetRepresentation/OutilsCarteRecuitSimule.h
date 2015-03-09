@@ -1,12 +1,18 @@
 #pragma once
 
+//!
+//! \file OutilsCarteRecuitSimule.h
+//!
+
 #include "Graphe.h"
 #include "Sommet.h"
 #include "InfoSommetCarte.h"
 #include "Arete.h"
 #include "InfoAreteCarte.h"
 
-
+//!
+//! \class OutilsCarteRecuitSimule
+//!
 class OutilsCarteRecuitSimule
 {
 public:

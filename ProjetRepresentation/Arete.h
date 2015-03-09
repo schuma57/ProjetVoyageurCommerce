@@ -1,5 +1,9 @@
 #pragma once
 
+//!
+//! \file Arete.h
+//!
+
 #include <string>
 #include "GElement.h"
 #include "Sommet.h"
@@ -15,6 +19,10 @@ T est la nature de l'information portée par un sommet et
 S est la nature de l'information portée par une arête
 */
 
+//!
+//! \class Arete
+//! \brief extends GElement
+//!
 template <class S, class T>
 class Arete : public GElement
 {

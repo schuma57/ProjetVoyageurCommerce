@@ -24,69 +24,63 @@ class Graphe
 protected:
 	int prochaineClef;
 public:
-	/**
-	* liste des sommets
-	**/
+	//!
+	//! liste des sommets
+	//!
 	PElement< Sommet<T> > * lSommets;
-	/**
-	* liste des aretes
-	**/
+	//!
+	//! liste des aretes
+	//!
 	PElement< Arete<S, T> > * lAretes;
 
-	/**
-	* crée un graphe vide
-	**/
+	//!
+	//! crée un graphe vide
+	//! \brief Constructeur par default
+	//!
 	Graphe();
 
-	/**
-	* constructeur de copie obligatoire car la classe comporte une partie dynamique
-	**/
+	//!
+	//! \brief Constructeur par copie
+	//!
 	Graphe(const Graphe<S, T> & graphe);
 
-	/**
-	* destructeur
-	**/
+	//!
+	//! Destructeur
+	//!
 	~Graphe();
 
 	int nombreSommets() const;
 	int nombreAretes() const;
 
-	/**
-	* crée un sommet isolé
-	**/
+	//!
+	//! crée un sommet isolé
+	//!
 	Sommet<T> * creeSommet(const T & info);
 
-	/**
-	* crée une arête joignant les 2 sommets debut et fin 
-	* met à jour les champs degré de debut et de fin
-	**/
+	//!
+	//! crée une arête joignant les 2 sommets debut et fin 
+	//! met à jour les champs degré de debut et de fin
+	//!
 	Arete<S, T> *
 		creeArete(Sommet<T> * debut, Sommet<T> * fin, const S & info);
 
-	/**
-	* recherche la liste des paires (voisin, arête) adjacentes de sommet dans le graphe
-	**/
+	//!
+	//! recherche la liste des paires (voisin, arête) adjacentes de sommet dans le graphe
+	//!
 	PElement< pair< Sommet<T> *, Arete<S, T>* > >  *
 		adjacences(const Sommet<T> * sommet) const;
 
-	/**
-	* cherche l'arête s1 - s2 ou l'arête s2 - s1 si elle existe
-	*
-	* DONNEES : s1 et s2 deux sommets quelconques du graphe
-	* RESULTATS : l'arête s'appuyant sur s1 et s2 si elle existe, NULL sinon
-	*
-	**/
+	//!
+	//! cherche l'arête s1 - s2 ou l'arête s2 - s1 si elle existe
+	//!
+	//! DONNEES : s1 et s2 deux sommets quelconques du graphe
+	//! RESULTATS : l'arête s'appuyant sur s1 et s2 si elle existe, NULL sinon
+	//!
 	Arete<S, T> * getAreteParSommets(const Sommet<T> * s1, const Sommet<T> * s2) const;
 
-	/**
-	* detecte si le graphe est eulerien
-	*/
-	bool estEulerien();
-	
-
-	/**
-	* opérateur = obligatoire car la classe comporte une partie dynamique
-	**/
+	//!
+	//! opérateur = obligatoire car la classe comporte une partie dynamique
+	//!
 	const Graphe<S, T> & operator = (const Graphe<S, T> & graphe);
 
 	//!
@@ -103,10 +97,9 @@ public:
 	//---------------------- Graphe ----------------------------------
 };
 
-/**
-* crée un graphe vide
-*
-**/
+//!
+//! crée un graphe vide
+//!
 template <class S, class T>
 Graphe<S, T>::Graphe() :prochaineClef(0), lAretes(NULL), lSommets(NULL){}
 

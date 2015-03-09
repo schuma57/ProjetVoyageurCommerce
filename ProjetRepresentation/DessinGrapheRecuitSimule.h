@@ -1,14 +1,19 @@
 #pragma once
 
+//!
+//! \file DessinGrapheRecuitSimule.h
+//!
+
 #include <fstream>
 #include <string>
-
 #include "Graphe.h"
 #include "InfoSommetCarte.h"
 #include "InfoAreteCarte.h"
-
 using namespace std;
 
+//!
+//! \class DessinGrapheRecuitSimule
+//!
 class DessinGrapheRecuitSimule
 {
 public:

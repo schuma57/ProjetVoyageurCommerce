@@ -1,11 +1,18 @@
 #pragma once
 
+//!
+//! \file Cycle.h
+//!
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include "Graphe.h"
 using namespace std;
 
+//!
+//! \class Cycle
+//!
 template<class S, class T>
 class Cycle
 {
@@ -14,17 +21,17 @@ public:
 	Cycle(){}
 	~Cycle(){}
 
-	static vector<Arete<S, T>> getHamiltonCycle(const Graphe<S, T> & graphe);
-	static double cout(const vector<Arete<S, T>> & cyclePrecedent);
+	static Graphe<S, T> getHamiltonCycle(const Graphe<S, T> & graphe);
 };
 
 
 template<class S, class T>
-/*static*/ vector<Arete<S, T>> Cycle<S,T>::getHamiltonCycle(const Graphe<S, T> & graphe)
+/*static*/ Graphe<S,T> Cycle<S,T>::getHamiltonCycle(const Graphe<S, T> & graphe)
 {
-	Graphe<S, T> gr( graphe);
+	Graphe<S,T> gr( graphe);
 	vector<Arete<S, T>> cycle;
 	const int NB = gr.nombreSommets();
+	int rando = rand() % NB;
 
 	Arete<S, T>* premier = PElement<Arete<S,T>>::depiler(gr.lAretes);		//premiere arete
 	cycle.push_back(*premier);
@@ -40,10 +47,11 @@ template<class S, class T>
 	Sommet<T>* sommetCourant = NULL;
 	Arete<S, T>* nextArete = NULL;
 	Arete<S, T>* dernier = NULL;
+	Arete<S, T>* derArete = NULL;
 
 	for (int i = 2; i < NB; i++)
 	{
-		Arete<S, T>* derArete = &cycle.at(cycle.size() - 1);	//on recupere la derniere arete stockee
+		derArete = &cycle.at(cycle.size() - 1);		//on recupere la derniere arete stockee
 
 		sommetCourant = derArete->fin;		//sommet courant
 
@@ -68,19 +76,15 @@ template<class S, class T>
 		
 	sommetCourant = 0; nextArete = 0; dernier = 0;
 
-	//cout << "-------- affichage du copie graphe -------------" << endl;
-	//cout << gr << endl;
-
-	return cycle;
-}
-
-template<class S, class T>
-double Cycle<S, T>::cout(const vector<Arete<S, T>> & cyclePrecedent)
-{
-	double somme(0);
-	for (auto t : cyclePrecedent)
+	Graphe<S,T> grapheHamilton;
+	grapheHamilton.lSommets = new PElement<Sommet<T>>(*graphe.lSommets);
+	PElement<Arete<S, T>>* aretes = NULL;
+	for (int i = cycle.size()-1; i >= 0; i--)
 	{
-		somme = somme + t.v.cout;
+		grapheHamilton.creeArete( cycle.at(i).debut, cycle.at(i).fin, cycle.at(i).v );
+		if (i == cycle.size() - 1)
+			grapheHamilton.lAretes->s = NULL;
 	}
-	return somme;
+
+	return grapheHamilton;
 }
