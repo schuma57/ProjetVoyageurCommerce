@@ -9,38 +9,38 @@ point remarquable = 2 black (0,0) O
 point remarquable = 2 black (1,0) 1
 point remarquable = 2 black (0,1) 1
 point remarquable = 5 red ( 2, 4) s6( 2, 4)
-point remarquable = 5 red ( 1, 4) s5( 1, 4)
+point remarquable = 5 red ( 0, 4) s5( 0, 4)
 point remarquable = 5 red ( 3, 5) s4( 3, 5)
 point remarquable = 5 red ( 5, 4) s3( 5, 4)
-point remarquable = 5 red ( 5, 2) s2( 5, 2)
-point remarquable = 5 red ( 3, 1) s1( 3, 1)
+point remarquable = 5 red ( 6, 2) s2( 6, 2)
+point remarquable = 5 red ( 4, 1) s1( 4, 1)
 point remarquable = 5 red ( 1, 2) s0( 1, 2)
 nombre de courbes = 7
 couleur =  blue
 nombre de points = 2
-( 1, 4)
-( 2, 4)
+( 3, 5)
+( 0, 4)
 couleur =  blue
 nombre de points = 2
-( 2, 4)
+( 0, 4)
 ( 1, 2)
 couleur =  blue
 nombre de points = 2
 ( 1, 2)
-( 3, 1)
+( 4, 1)
 couleur =  blue
 nombre de points = 2
-( 3, 1)
-( 5, 2)
+( 4, 1)
+( 6, 2)
 couleur =  blue
 nombre de points = 2
-( 5, 2)
+( 6, 2)
 ( 5, 4)
 couleur =  blue
 nombre de points = 2
 ( 5, 4)
-( 3, 5)
+( 2, 4)
 couleur =  blue
 nombre de points = 2
+( 2, 4)
 ( 3, 5)
-( 1, 4)

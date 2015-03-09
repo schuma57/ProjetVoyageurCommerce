@@ -4,7 +4,7 @@
 #include "Vecteur2D.h"
 #include "Graphe.h"
 #include "InfoAreteCarte.h"
-//#include "InfoSommet.h"
+#include "InfoSommetCarte.h"
 using namespace std;
 
 

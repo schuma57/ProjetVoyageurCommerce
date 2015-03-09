@@ -31,17 +31,23 @@ template<class S, class T>
 	Graphe<S,T> gr( graphe);
 	vector<Arete<S, T>> cycle;
 	const int NB = gr.nombreSommets();
-	int rando = rand() % NB;
 
-	Arete<S, T>* premier = PElement<Arete<S,T>>::depiler(gr.lAretes);		//premiere arete
-	cycle.push_back(*premier);
-	PElement<Sommet<T>>::retire(premier->debut, gr.lSommets);	//on supprime le sommet
+	PElement<Arete<S, T>>* it = gr.lAretes;
 
-	PElement<pair<Sommet<T>*, Arete<S, T>*>>* truc = gr.adjacences(premier->debut);
-	while (truc != NULL)
+	int random = rand() % NB;
+	for (int j = 0; j < random; j++)
 	{
-		PElement<Arete<S, T>>::retire(truc->v->second, gr.lAretes); //on supprime toutes les aretes partant du sommet supprime
-		truc = truc->s;
+		it = it->s;
+	}
+
+	Arete<S, T>* premier = it->v;	
+	cycle.push_back(*premier);
+
+	PElement<pair<Sommet<T>*, Arete<S, T>*>>* supp = gr.adjacences(premier->debut);
+	while (supp != NULL)
+	{
+		PElement<Arete<S, T>>::retire(supp->v->second, gr.lAretes); //on supprime toutes les aretes partant du sommet supprime
+		supp = supp->s;
 	}
 
 	Sommet<T>* sommetCourant = NULL;
@@ -61,20 +67,26 @@ template<class S, class T>
 			nextArete = new Arete<S, T>(nextArete->clef, nextArete->fin, nextArete->debut, nextArete->v); //on retourne l'arete
 
 		cycle.push_back(*nextArete);	//on ajoute l'arete
-		PElement<Sommet<T>>::retire(nextArete->debut, gr.lSommets);	//on supprime le sommet
-
-		PElement<pair<Sommet<T>*, Arete<S, T>*>>* truc = gr.adjacences(nextArete->debut);
-		while (truc != NULL)
+		
+		supp = gr.adjacences(nextArete->debut);
+		while (supp != NULL)
 		{
-			PElement<Arete<S, T>>::retire(truc->v->second, gr.lAretes); //on supprimes toutes les aretes partant du sommet supprime
-			truc = truc->s;
+			PElement<Arete<S, T>>::retire(supp->v->second, gr.lAretes); //on supprimes toutes les aretes partant du sommet supprime
+			supp = supp->s;
 		}
 	}
 
+	derArete = &cycle.at(cycle.size() - 1);
+
 	if ((dernier = graphe.getAreteParSommets(cycle.at(cycle.size() - 1).fin, cycle.at(0).debut)) != NULL)
-		cycle.push_back(*dernier);
+	{
+		if (derArete->fin == dernier->fin)
+			dernier = new Arete<S, T>(dernier->clef, dernier->fin, dernier->debut, dernier->v); //on retourne l'arete
 		
-	sommetCourant = 0; nextArete = 0; dernier = 0;
+		cycle.push_back(*dernier);
+	}
+	
+	sommetCourant = 0; nextArete = 0; supp = 0; dernier = 0;
 
 	Graphe<S,T> grapheHamilton;
 	grapheHamilton.lSommets = new PElement<Sommet<T>>(*graphe.lSommets);

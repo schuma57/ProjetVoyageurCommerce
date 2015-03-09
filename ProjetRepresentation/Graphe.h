@@ -81,7 +81,7 @@ public:
 	//!
 	//! opérateur = obligatoire car la classe comporte une partie dynamique
 	//!
-	const Graphe<S, T> & operator = (const Graphe<S, T> & graphe);
+	Graphe<S, T> & operator = (const Graphe<S, T> & graphe);
 
 	//!
 	//! operateur string()
@@ -113,9 +113,13 @@ Graphe<S, T>::Graphe(const Graphe<S, T> & graphe)
 }
 
 template <class S, class T>
-const Graphe<S, T> & Graphe<S, T>::operator = (const Graphe<S, T> & graphe)
+Graphe<S, T> & Graphe<S, T>::operator = (const Graphe<S, T> & graphe)
 {
-	throw Erreur("pas encore écrit : reste à faire");
+	//throw Erreur("pas encore écrit : reste à faire");
+	this->prochaineClef = graphe.prochaineClef;
+	this->lAretes = new PElement<Arete<S, T>>(*graphe.lAretes);
+	this->lSommets = new PElement<Sommet<T>>(*graphe.lSommets);
+	return *this;
 }
 
 template <class S, class T>

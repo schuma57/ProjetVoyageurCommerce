@@ -1,9 +1,14 @@
-#ifndef ALGEBRELINEAIRE_H
-#define ALGEBRELINEAIRE_H
+#ifndef ALGEBRELINEAIRE
+#define ALGEBRELINEAIRE
+
+//!
+//! \file AlgebreLineaire.h
+//!
 
 #include <math.h>
 #include <iostream>
 using namespace std;
+
 
 template <class T>
 inline const T operator - (const T & u, const T & v)
@@ -29,7 +34,6 @@ template <class T>
 inline const T & operator *=(T & u, const T & v)
 {
 	u = u * v;
-
 	return u;
 }
 

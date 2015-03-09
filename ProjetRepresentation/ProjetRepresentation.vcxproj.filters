@@ -68,9 +68,6 @@
     <ClInclude Include="Sommet.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="AlgebreLineaire.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Vecteur2D.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -104,7 +101,7 @@
     <ClInclude Include="Erreur.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="MathsVariee.h">
+    <ClInclude Include="AlgebreLineaire.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
