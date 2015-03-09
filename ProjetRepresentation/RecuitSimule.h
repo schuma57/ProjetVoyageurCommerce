@@ -54,11 +54,10 @@ const S recuitSimule(const double & tInitiale, const double & tFinale, const int
 	double t; // température courante
 	double coutCourant;
 
+	solutionCourante = solutionInitiale;
+	bestSolution = solutionInitiale;
 	for (t = tInitiale, coutBestSolution = coutCourant = cout1(solutionInitiale); t > tFinale; t = succ(t))
 	{
-		solutionCourante = solutionInitiale;
-		bestSolution = solutionInitiale;
-
 		int nombreTentatives, nombreSucces;
 		S solutionPrecedente;
 		double coutPrecedent;

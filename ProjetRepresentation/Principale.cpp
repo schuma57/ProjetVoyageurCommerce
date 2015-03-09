@@ -40,6 +40,38 @@ double coutCycle(const Graphe<InfoAreteCarte, InfoSommetCarte> & cycle)
 const Graphe<InfoAreteCarte, InfoSommetCarte> transformationCycle(const Graphe<InfoAreteCarte, InfoSommetCarte> & cycle)
 {
 	Graphe<InfoAreteCarte, InfoSommetCarte> nouveau(cycle);
+	const int NB = nouveau.nombreSommets();
+
+	PElement<Arete<InfoAreteCarte, InfoSommetCarte>>* it1 = nouveau.lAretes;
+	PElement<Arete<InfoAreteCarte, InfoSommetCarte>>* it2 = nouveau.lAretes;
+
+	int random = rand() % NB;
+	for (int j = 0; j < random; j++)
+	{
+		it1 = it1->s;
+	}
+
+	int random2;
+	while( (random2 = rand() % NB) == random) ;
+	for (int j = 0; j < random2; j++)
+	{
+		it2 = it2->s;
+	}
+
+	Sommet<InfoSommetCarte> *droite1, *droite2, *gauche1, *gauche2;
+	gauche1 = it1->v->debut;
+	gauche2 = it2->v->debut;
+	droite1 = it1->v->fin;
+	droite2 = it2->v->fin;
+
+	PElement<Arete<InfoAreteCarte, InfoSommetCarte>>::retire(it1->v, nouveau.lAretes);
+	PElement<Arete<InfoAreteCarte, InfoSommetCarte>>::retire(it2->v, nouveau.lAretes);
+
+	double d = OutilsCarteRecuitSimule::distance(gauche1, droite2);
+	nouveau.creeArete(gauche1, droite2, InfoAreteCarte(d));
+
+	d = OutilsCarteRecuitSimule::distance(gauche2, droite1);
+	nouveau.creeArete(gauche2, droite1, InfoAreteCarte(d));
 
 	return nouveau;
 }
@@ -69,6 +101,7 @@ void creerFichier(Graphe<InfoAreteCarte, InfoSommetCarte> & graphe)
 	cout << "le fichier texte de  dessin " << nomFichierDessin << " a ete cree" << endl;
 }
 
+
 int main()
 {
 	srand(time(NULL));
@@ -84,10 +117,10 @@ int main()
 	const Graphe<InfoAreteCarte, InfoSommetCarte>(*changementAleatoire)(const Graphe<InfoAreteCarte, InfoSommetCarte> & solution);
 	changementAleatoire = transformationCycle;
 	
-	double  tInitiale = 1000;
+	double  tInitiale = 100;
 	double  tFinale = 0;
-	int nombreTentativesMax = 50;
-	int nombreSuccesMax = 25;
+	int nombreTentativesMax = 10;
+	int nombreSuccesMax = 5;
 	double coutMeilleureSolution;
 
 
@@ -140,7 +173,7 @@ int main()
 
 	//---------------------------- Cout du cycle initial -------------------------------
 	cout <<"Cout du cycle initial : "<< coutCycle(cycleHamilton) << endl;
-
+	//cout << "cout changemant aleatoire" << coutCycle(changementAleatoire(cycleHamilton)) << endl;
 
 	//---------------------------- on utilise le recuit simule ---------------------------
 	Graphe<InfoAreteCarte, InfoSommetCarte> solution = recuitSimule(
@@ -152,9 +185,10 @@ int main()
 		coutMeilleureSolution
 		);
 	
+
 	//---------------------------- on affiche le meilleur cout ---------------------------
-	cout << "le meilleur cout !" << endl;
-	cout << solution << endl;
+	cout << endl << "le meilleur cout !" << endl;
+	cout << coutCycle(solution) << endl;
 
 
 	//--------------- on dessine via le serveur ------------------------------
