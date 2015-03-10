@@ -43,7 +43,7 @@ const Graphe<InfoAreteCarte, InfoSommetCarte> transformationCycle(const Graphe<I
 	const int NB = nouveau.nombreSommets();
 
 	PElement<Arete<InfoAreteCarte, InfoSommetCarte>>* it1 = nouveau.lAretes;
-	PElement<Arete<InfoAreteCarte, InfoSommetCarte>>* it2 = nouveau.lAretes;
+	//PElement<Arete<InfoAreteCarte, InfoSommetCarte>>* it2 = nouveau.lAretes;
 
 	int random = rand() % NB;
 	for (int j = 0; j < random; j++)
@@ -51,12 +51,25 @@ const Graphe<InfoAreteCarte, InfoSommetCarte> transformationCycle(const Graphe<I
 		it1 = it1->s;
 	}
 
-	int random2;
-	while( (random2 = rand() % NB) == random) ;
+	/*int random2;
+	while( (random2 = rand() % NB) == random || random2 == random+1 || random2 == random-1) ;
 	for (int j = 0; j < random2; j++)
 	{
 		it2 = it2->s;
-	}
+	}*/
+
+	PElement<Arete<InfoAreteCarte, InfoSommetCarte>>* it2;
+	do
+	{
+		it2 = nouveau.lAretes;
+		int random2 = rand() % NB;
+		for (int j = 0; j < random2; j++)
+		{
+			it2 = it2->s;
+		}
+
+	} while (it1->v->debut == it2->v->debut || it1->v->debut == it2->v->fin || it1->v->fin == it2->v->debut || it1->v->fin == it2->v->fin);
+
 
 	Sommet<InfoSommetCarte> *droite1, *droite2, *gauche1, *gauche2;
 	gauche1 = it1->v->debut;
@@ -78,7 +91,7 @@ const Graphe<InfoAreteCarte, InfoSommetCarte> transformationCycle(const Graphe<I
 
 double successeur(const double & temperature)
 {
-	return temperature + 1;
+	return temperature - 1;
 }
 
 void creerFichier(Graphe<InfoAreteCarte, InfoSommetCarte> & graphe)
@@ -117,10 +130,10 @@ int main()
 	const Graphe<InfoAreteCarte, InfoSommetCarte>(*changementAleatoire)(const Graphe<InfoAreteCarte, InfoSommetCarte> & solution);
 	changementAleatoire = transformationCycle;
 	
-	double  tInitiale = 100;
+	double  tInitiale = 1000;
 	double  tFinale = 0;
-	int nombreTentativesMax = 10;
-	int nombreSuccesMax = 5;
+	int nombreTentativesMax = 50;
+	int nombreSuccesMax = 25;
 	double coutMeilleureSolution;
 
 
@@ -188,6 +201,7 @@ int main()
 
 	//---------------------------- on affiche le meilleur cout ---------------------------
 	cout << endl << "le meilleur cout !" << endl;
+	creerFichier(solution);
 	cout << coutCycle(solution) << endl;
 
 
