@@ -18,11 +18,11 @@ point remarquable = 5 red ( 1, 2) s0( 1, 2)
 nombre de courbes = 7
 couleur =  blue
 nombre de points = 2
-( 5, 4)
+( 6, 2)
 ( 4, 1)
 couleur =  blue
 nombre de points = 2
-( 3, 5)
+( 0, 4)
 ( 2, 4)
 couleur =  blue
 nombre de points = 2
@@ -30,17 +30,17 @@ nombre de points = 2
 ( 3, 5)
 couleur =  blue
 nombre de points = 2
-( 6, 2)
+( 4, 1)
+( 1, 2)
+couleur =  blue
+nombre de points = 2
+( 1, 2)
+( 0, 4)
+couleur =  blue
+nombre de points = 2
+( 3, 5)
 ( 5, 4)
 couleur =  blue
 nombre de points = 2
-( 0, 4)
-( 1, 2)
-couleur =  blue
-nombre de points = 2
-( 4, 1)
+( 5, 4)
 ( 6, 2)
-couleur =  blue
-nombre de points = 2
-( 1, 2)
-( 0, 4)

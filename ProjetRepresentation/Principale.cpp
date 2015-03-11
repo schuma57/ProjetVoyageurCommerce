@@ -39,60 +39,67 @@ double coutCycle(const Graphe<InfoAreteCarte, InfoSommetCarte> & cycle)
 
 const Graphe<InfoAreteCarte, InfoSommetCarte> transformationCycle(const Graphe<InfoAreteCarte, InfoSommetCarte> & cycle)
 {
-	Graphe<InfoAreteCarte, InfoSommetCarte> nouveau(cycle);
-	const int NB = nouveau.nombreSommets();
+	bool continuer = false;
+	Graphe<InfoAreteCarte, InfoSommetCarte> nouveau = cycle;
+	const int NB = cycle.nombreSommets();
 
-	PElement<Arete<InfoAreteCarte, InfoSommetCarte>>* it1 = nouveau.lAretes;
-	//PElement<Arete<InfoAreteCarte, InfoSommetCarte>>* it2 = nouveau.lAretes;
-
-	int random = rand() % NB;
-	for (int j = 0; j < random; j++)
-	{
-		it1 = it1->s;
-	}
-
-	/*int random2;
-	while( (random2 = rand() % NB) == random || random2 == random+1 || random2 == random-1) ;
-	for (int j = 0; j < random2; j++)
-	{
-		it2 = it2->s;
-	}*/
-
+	PElement<Arete<InfoAreteCarte, InfoSommetCarte>>* it1;
 	PElement<Arete<InfoAreteCarte, InfoSommetCarte>>* it2;
+
 	do
 	{
-		it2 = nouveau.lAretes;
-		int random2 = rand() % NB;
-		for (int j = 0; j < random2; j++)
+		continuer = false;
+		it1 = nouveau.lAretes;
+
+		int random = rand() % NB;
+		for (int j = 0; j < random; j++)
 		{
-			it2 = it2->s;
+			it1 = it1->s;
 		}
 
-	} while (it1->v->debut == it2->v->debut || it1->v->debut == it2->v->fin || it1->v->fin == it2->v->debut || it1->v->fin == it2->v->fin);
+		do
+		{
+			it2 = nouveau.lAretes;
+			int random2 = rand() % NB;
+			for (int j = 0; j < random2; j++)
+			{
+				it2 = it2->s;
+			}
 
+		} while (it1->v->debut == it2->v->debut || it1->v->debut == it2->v->fin
+			|| it1->v->fin == it2->v->debut || it1->v->fin == it2->v->fin);
 
-	Sommet<InfoSommetCarte> *droite1, *droite2, *gauche1, *gauche2;
-	gauche1 = it1->v->debut;
-	gauche2 = it2->v->debut;
-	droite1 = it1->v->fin;
-	droite2 = it2->v->fin;
+		Sommet<InfoSommetCarte> *droite1, *droite2, *gauche1, *gauche2;
+		gauche1 = it1->v->debut;
+		gauche2 = it2->v->debut;
+		droite1 = it1->v->fin;
+		droite2 = it2->v->fin;
 
-	PElement<Arete<InfoAreteCarte, InfoSommetCarte>>::retire(it1->v, nouveau.lAretes);
-	PElement<Arete<InfoAreteCarte, InfoSommetCarte>>::retire(it2->v, nouveau.lAretes);
+		if (nouveau.getAreteParSommets(gauche1, droite2) != NULL
+			|| nouveau.getAreteParSommets(gauche2, droite1) != NULL)
+				continuer = true;
+		else
+		{
+			PElement<Arete<InfoAreteCarte, InfoSommetCarte>>::retire(it1->v, nouveau.lAretes);
+			PElement<Arete<InfoAreteCarte, InfoSommetCarte>>::retire(it2->v, nouveau.lAretes);
 
-	double d = OutilsCarteRecuitSimule::distance(gauche1, droite2);
-	nouveau.creeArete(gauche1, droite2, InfoAreteCarte(d));
+			double d = OutilsCarteRecuitSimule::distance(gauche1, droite2);
+			nouveau.creeArete(gauche1, droite2, InfoAreteCarte(d));
 
-	d = OutilsCarteRecuitSimule::distance(gauche2, droite1);
-	nouveau.creeArete(gauche2, droite1, InfoAreteCarte(d));
+			d = OutilsCarteRecuitSimule::distance(gauche2, droite1);
+			nouveau.creeArete(gauche2, droite1, InfoAreteCarte(d));
+		}
+	} while (continuer);
 
 	return nouveau;
 }
+
 
 double successeur(const double & temperature)
 {
 	return temperature - 1;
 }
+
 
 void creerFichier(Graphe<InfoAreteCarte, InfoSommetCarte> & graphe)
 {
@@ -186,7 +193,7 @@ int main()
 
 	//---------------------------- Cout du cycle initial -------------------------------
 	cout <<"Cout du cycle initial : "<< coutCycle(cycleHamilton) << endl;
-	//cout << "cout changemant aleatoire" << coutCycle(changementAleatoire(cycleHamilton)) << endl;
+	
 
 	//---------------------------- on utilise le recuit simule ---------------------------
 	Graphe<InfoAreteCarte, InfoSommetCarte> solution = recuitSimule(
@@ -201,12 +208,14 @@ int main()
 
 	//---------------------------- on affiche le meilleur cout ---------------------------
 	cout << endl << "le meilleur cout !" << endl;
-	creerFichier(solution);
+	//cout << endl << solution << endl;
 	cout << coutCycle(solution) << endl;
+	//creerFichier(solution);
 
 
 	//--------------- on dessine via le serveur ------------------------------
 	//g1.accept(&visitor);
+	//solution.accept(&visitor);
 
 	return 0;
 }
